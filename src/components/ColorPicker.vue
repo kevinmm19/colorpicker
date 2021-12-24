@@ -10,8 +10,14 @@
     hex,
     hsl,
     rgb,
-  } from '@/utils/color';
+  } from '../utils/color';
   import CheckIcon from '@/assets/check.svg';
+
+  const modes = {
+    hex,
+    hsl,
+    rgb
+  }; 
 
   @Component({
     components: {
@@ -27,27 +33,16 @@
       `hsl`,
       `rgb`
     ];
-    
+
     activeSwatchIndex: number = 0;
+
     activeColorModeIndex: number = 0;
 
-    get activeSwatchValue(): string {
-      return this.swatches[this.activeSwatchIndex];
-    };
-
-    get activeColorModeValue(): string {
-      return this.colorModes[this.activeColorModeIndex];
-    };
-
     get activeCode(): string {
-      switch (this.activeColorModeValue) {
-        case `hsl`:
-          return hsl(this.activeSwatchValue);
-        case `rgb`:
-          return rgb(this.activeSwatchValue);
-        default:
-          return hex(this.activeSwatchValue);;
-      }
+      const activeSwatch = this.swatches[this.activeSwatchIndex];
+      const activeMode = this.colorModes[this.activeColorModeIndex];
+
+      return modes[activeMode](activeSwatch);
     };
   }
 </script>

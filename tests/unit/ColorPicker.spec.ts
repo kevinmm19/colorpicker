@@ -83,5 +83,13 @@ describe(`ColorPicker`, () => {
       
       expect(wrapper.find(`[qa-ref="color-code"]`).text()).toBe(`2°, 76%, 54%`);
     });
+
+    it('should display the code in the right color when changing color', async () => {
+      const targetSwatch = wrapper.findAll(`[qa-ref="swatch"]`).at(1);
+
+      await targetSwatch.trigger(`click`);
+
+      expect(wrapper.find(`[qa-ref="color-code"]`).text()).toBe(`#3490dc`);
+    });
   });
 });
