@@ -7,11 +7,11 @@
           'vue-style-loader',
           {
             loader: 'css-loader',
-            options: { modules: true }
+            options: { modules: true },
           },
-          'sass-loader'
+          'sass-loader',
         ]
-      }
+      },
     ]
   }
 }

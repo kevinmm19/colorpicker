@@ -5,11 +5,11 @@ module.exports = {
     "^.+\\.js$": "babel-jest",
     "^.+\\.vue$": "vue-jest",
     '.+\\.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub',
-    '^.+\\.svg$': '<rootDir>/svgTransform.js'
+    '^.+\\.svg$': '<rootDir>/svgTransform.js',
   },
   globals: {
     'vue-jest': {
-      experimentalCSSCompile: true
-    }
+      experimentalCSSCompile: true,
+    },
   },
 }

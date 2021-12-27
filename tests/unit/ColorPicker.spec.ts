@@ -1,8 +1,8 @@
+import ColorPicker from '@/components/ColorPicker.vue';
 import {
   shallowMount,
   Wrapper,
 } from '@vue/test-utils';
-import ColorPicker from '@/components/ColorPicker.vue';
 import convert from 'color-convert';
 
 const propsData = {
@@ -11,8 +11,8 @@ const propsData = {
     `3490dc`,
     `f6993f`,
     `38c172`,
-    `fff`
-  ]
+    `fff`,
+  ],
 };
 let wrapper: Wrapper<Vue>;
 
@@ -29,14 +29,14 @@ describe(`ColorPicker`, () => {
 
       propsData.swatches.forEach((swatch, index) => {
         expect(swatches.at(index).attributes().style).toBe(
-          `background-color: rgb(${convert.hex.rgb(swatch).join(`, `)});`
+          `background-color: rgb(${convert.hex.rgb(swatch).join(`, `)});`,
         );
       });
     });
 
     it(`should set the first swatch as the selected one by default`, () => {
       const firstSwatch = wrapper.find(`[qa-ref="swatch"]`);
-      
+
       expect(firstSwatch.classes()).toContain(`active`);
     });
 
@@ -58,7 +58,7 @@ describe(`ColorPicker`, () => {
 
     it(`should set the first color mode as the selected one by default`, () => {
       const firstColorMode = wrapper.find(`[qa-ref="color-mode"]`);
-      
+
       expect(firstColorMode.classes()).toContain(`active`);
     });
 
@@ -80,7 +80,7 @@ describe(`ColorPicker`, () => {
       const targetColorMode = wrapper.findAll(`[qa-ref="color-mode"]`).at(1);
 
       await targetColorMode.trigger(`click`);
-      
+
       expect(wrapper.find(`[qa-ref="color-code"]`).text()).toBe(`2°, 76%, 54%`);
     });
 

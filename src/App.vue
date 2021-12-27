@@ -1,5 +1,9 @@
 <script lang="ts">
-  import { 
+  /* tslint:disable-next-line */
+  /// <reference path="typings/shims-json.d.ts" />
+
+  import Swatches from '@/assets/swatches.json';
+  import {
     Component,
     Vue,
   } from 'vue-property-decorator';
@@ -10,28 +14,16 @@
       ColorPicker,
     },
   })
-  export default class App extends Vue {}
+  export default class App extends Vue {
+    protected swatchesData: string[] = Swatches;
+  }
 </script>
 
 <template>
   <div
-    :class="$style.root"
+    class="container my-8"
     id="app"
   >
-    <ColorPicker />
+    <ColorPicker :swatches="swatchesData" />
   </div>
 </template>
-
-<style
-  lang="scss"
-  module
->
-  .root {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
-    color: #2c3e50;
-    margin-top: 60px;
-  }
-</style>

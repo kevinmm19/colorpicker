@@ -1,7 +1,9 @@
 <script lang="ts">
-  /// <reference path="../shims-svg.d.ts" />
+  /* tslint:disable-next-line */
+  /// <reference path="../typings/shims-svg.d.ts" />
 
-  import { 
+  import CheckIcon from '@/assets/check.svg';
+  import {
     Component,
     Prop,
     Vue,
@@ -11,13 +13,6 @@
     hsl,
     rgb,
   } from '../utils/color';
-  import CheckIcon from '@/assets/check.svg';
-
-  const modes = {
-    hex,
-    hsl,
-    rgb
-  }; 
 
   @Component({
     components: {
@@ -26,46 +21,64 @@
   })
   export default class ColorPicker extends Vue {
     @Prop({ default: [] })
-    swatches: Array<string>;
+    private swatches!: string[];
 
-    colorModes: Array<string> = [
+    private colorModes: string[] = [
       `hex`,
       `hsl`,
-      `rgb`
+      `rgb`,
     ];
 
-    activeSwatchIndex: number = 0;
+    private activeSwatchIndex: number = 0;
 
-    activeColorModeIndex: number = 0;
+    private activeColorModeIndex: number = 0;
 
     get activeCode(): string {
       const activeSwatch = this.swatches[this.activeSwatchIndex];
       const activeMode = this.colorModes[this.activeColorModeIndex];
 
-      return modes[activeMode](activeSwatch);
-    };
+      switch (activeMode) {
+        case `hsl`:
+          return hsl(activeSwatch);
+        case `rgb`:
+          return rgb(activeSwatch);
+        default:
+          return hex(activeSwatch);
+      }
+    }
   }
 </script>
 
 <template>
-  <div :class="$style.root">
-    <ul :class="$style.swatches">
+  <div
+    :class="$style.root"
+    class="container py-4 bg-gray-200 border border-gray-300 shadow-xl rounded-2xl"
+  >
+    <ul
+      :class="$style.swatches"
+      class="flex flex-wrap flex-row justify-between bg-gray-200"
+    >
       <li
         :key="index"
         v-for="(swatch, index) in swatches"
         :class="[
           $style.swatch,
-          { active: activeSwatchIndex === index }
+          { active: activeSwatchIndex === index },
+          { [$style.active]: activeSwatchIndex === index }
         ]"
         :style="{ backgroundColor: `#${swatch}` }"
+        class="h-12 w-12 mb-2 rounded-xl"
         qa-ref="swatch"
         @click="activeSwatchIndex = index"
       >
-        <CheckIcon />
+        <CheckIcon :class="$style.checkIcon" />
       </li>
     </ul>
 
-    <ul :class="$style.colorModes">
+    <ul
+      :class="$style.colorModes"
+      class="flex pt-2 pb-4"
+    >
       <li
         :key="index"
         v-for="(colorMode, index) in colorModes"
@@ -73,8 +86,10 @@
         <button
           :class="[
             $style.colorMode,
-            { active: activeColorModeIndex === index }
+            { active: activeColorModeIndex === index },
+            { [$style.active]: activeColorModeIndex === index }
           ]"
+          class="uppercase font-bold text-gray-800 bg-white p-3 mr-2 rounded-xl"
           qa-ref="color-mode"
           @click="activeColorModeIndex = index"
         >
@@ -85,6 +100,7 @@
 
     <p
       :class="$style.colorCode"
+      class="uppercase font-bold bg-white p-2 mr-2 text-gray-800"
       qa-ref="color-code"
     >
       {{ activeCode }}
@@ -96,5 +112,42 @@
   lang="scss"
   module
 >
+  .active {
+
+  }
+
+  .root {
+
+  }
+
+  .swatches {
+
+  }
+
+  .checkIcon {
+    display: none;
+    color: #fff;
+    fill: currentColor;
+    margin: .5rem;
+  }
+
+  .swatch.active {
+    .checkIcon {
+      display: block;
+    }
+  }
+
+  .colorMode.active {
+    background-color: #1f2937;
+    color: #fff;
+  }
+
+  .colorModes {
+
+  }
+
+  .colorCode {
+    
+  }
 
 </style>
