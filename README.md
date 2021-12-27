@@ -1,4 +1,4 @@
-# colorpicker
+# Colorpicker
 
 ## Project setup
 ```
@@ -15,20 +15,36 @@ npm run serve
 npm run build
 ```
 
-### Run your tests
-```
-npm run test
-```
-
 ### Lints and fixes files
 ```
 npm run lint
 ```
 
-### Run your unit tests
+### Run unit tests
 ```
 npm run test:unit
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Run unit tests on watch mode
+```
+npm run test:unit:watch
+```
+
+## Tech Stack
+
+* Vue
+* TypeScript
+* Jest
+* Tailwind CSS
+* CSS Modules
+* SCSS
+* Webpack
+
+## Build Version
+
+0.1.0
+
+## About Me
+
+Kevin Martínez Montero
+Senior Front End Engineer
