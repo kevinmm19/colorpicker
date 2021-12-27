@@ -21,7 +21,7 @@
 
 <template>
   <div
-    class="container my-8"
+    class="container my-12 md:my-32"
     id="app"
   >
     <ColorPicker :swatches="swatchesData" />

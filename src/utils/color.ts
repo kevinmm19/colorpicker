@@ -10,6 +10,10 @@ const hsl = (color: string): string => {
   return `${hslColor[0]}°, ${hslColor[1]}%, ${hslColor[2]}%`;
 };
 
+const isLight = (color: string): boolean => {
+  return convert.hex.hsl(color)[2] >= 80;
+};
+
 const rgb = (color: string): string => {
   return convert.hex.rgb(color).join(`, `);
 };
@@ -17,5 +21,6 @@ const rgb = (color: string): string => {
 export {
   hex,
   hsl,
+  isLight,
   rgb,
 };

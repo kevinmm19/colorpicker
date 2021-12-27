@@ -1,6 +1,7 @@
 import {
   hex,
   hsl,
+  isLight,
   rgb,
 } from '@/utils/color';
 
@@ -17,5 +18,17 @@ describe(`Color`, () => {
 
   it(`should return the color into RGB notation`, () => {
     expect(rgb(color)).toBe(`227, 52, 47`);
+  });
+
+  it(`should return true when the color is over 80% lightness`, () => {
+    expect(isLight(`fff`)).toBe(true);
+  });
+
+  it(`should return true when the color is equal to 80% lightness`, () => {
+    expect(isLight(`f9d`)).toBe(true);
+  });
+
+  it(`should return false when the color is under 80% lightness`, () => {
+    expect(isLight(`000`)).toBe(false);
   });
 });
