@@ -58,11 +58,12 @@
 </script>
 
 <template>
-  <div class="container max-w-lg py-4 bg-gray-200 border border-gray-300 shadow-xl rounded-2xl">
+  <div class="container max-w-xs md:max-w-lg py-4 bg-gray-200 border border-gray-300 shadow-xl rounded-2xl">
     <ul
       class="
         grid grid-rows-6 grid-cols-5 gap-2
-        sm:grid-rows-5 sm:grid-cols-6 md:grid-rows-3 md:grid-cols-10
+        sm:grid-rows-5 sm:grid-cols-6
+        md:grid-rows-3 md:grid-cols-10
       "
     >
       <li
